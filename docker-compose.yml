@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+  certs-carrier:
+    build: build/certs
+    image: certs-carrier:stable
+
+  nginx-http11:
+    build: build/nginx-http11
+    container_name: nginx-http11
+    depends_on:
+      - certs-carrier
+    volumes:
+      - ./dist/:/var/www/demo
+    ports:
+      - 8001:80
+      - 4431:443
+
+  nginx-http2:
+    build: build/nginx-http2
+    container_name: nginx-http2
+    depends_on:
+      - certs-carrier
+    volumes:
+      - ./dist/:/var/www/demo
+    ports:
+      - 8002:80
+      - 4432:443
+
+  nginx-http3:
+    build: build/nginx-http3
+    container_name: nginx-http3
+    depends_on:
+      - certs-carrier
+    volumes:
+      - ./dist/:/var/www/demo
+    ports:
+      - 8003:80
+      - 4433:443/tcp
+      - 4433:443/udp
