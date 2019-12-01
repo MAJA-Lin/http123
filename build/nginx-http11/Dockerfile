@@ -6,7 +6,7 @@ FROM nginx:stable
 # Copy certs.
 COPY --from=certs /var/certs/dhparam.pem /etc/nginx/dhparam.pem
 COPY --from=certs /var/certs/localhost.key /etc/ssl/localhost.key
-COPY --from=certs /var/certs/localhost.pem /etc/ssl/localhost.pem
+COPY --from=certs /var/certs/localhost.crt /etc/ssl/localhost.crt
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 COPY conf/example.com.conf /etc/nginx/conf.d/default.conf

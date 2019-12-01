@@ -3,6 +3,10 @@ services:
   certs-carrier:
     build: build/certs
     image: certs-carrier:stable
+    # volumes:
+    #   - ./build/certs/localhost.pfx:/var/certs/localhost.pfx
+    #   - ./build/certs/localhost.crt:/var/certs/localhost.crt
+    #   - ./build/certs/localhost.key:/var/certs/localhost.key
 
   nginx-http11:
     build: build/nginx-http11
@@ -36,4 +40,4 @@ services:
     ports:
       - 8003:80
       - 4433:443/tcp
-      - 4434:443/udp
+      - 4433:443/udp
